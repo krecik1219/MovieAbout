@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/cast_list_item_border">
+
+    <ImageView
+        android:id="@+id/iv_person_photo"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:padding="2dp"
+        android:cropToPadding="true"
+        android:background="@drawable/actor_photo_border"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/actor_photo_descr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_surname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tv_age"
+        app:layout_constraintStart_toEndOf="@+id/iv_person_photo"
+        app:layout_constraintTop_toTopOf="@+id/iv_person_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/age"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_person_photo"
+        app:layout_constraintStart_toEndOf="@+id/iv_person_photo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_surname" />
+
+    <TextView
+        android:id="@+id/tv_display_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_age"
+        app:layout_constraintStart_toEndOf="@id/tv_age" />
+
+</android.support.constraint.ConstraintLayout>

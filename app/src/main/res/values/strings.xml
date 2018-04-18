@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MovieAbout</string>
+    <string name="movie_image_descr">Movie image</string>
+    <string name="main_movie_picture">Main movie picture</string>
+    <string name="movie_picture">Movie picture</string>
+    <string name="age_label">Age:</string>
+    <string name="person_photo_descr">Person photo</string>
+    <string name="actor_photo_descr">Actor\'s photo</string>
+    <string name="age">Age:</string>
+    <string name="enlarged_image_descr">Enlarged image</string>
+</resources>

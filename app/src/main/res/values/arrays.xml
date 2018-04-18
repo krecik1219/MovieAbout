@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="movies_titles">
+        <item>Scarface</item>
+        <item>The Godfather</item>
+        <item>Inception</item>
+        <item>The Prestige</item>
+        <item>Shutter Island</item>
+        <item>The Wolf of Wall Street</item>
+        <item>Fight Club</item>
+        <item>Se7en</item>
+        <item>The Departed</item>
+        <item>Casino Royale</item>
+    </string-array>
+
+    <string-array name="movies_categories">
+        <item>CRIME</item>
+        <item>CRIME</item>
+        <item>THRILLER</item>
+        <item>THRILLER</item>
+        <item>THRILLER</item>
+        <item>COMEDY</item>
+        <item>THRILLER</item>
+        <item>THRILLER</item>
+        <item>CRIME</item>
+        <item>ACTION</item>
+    </string-array>
+
+</resources>
