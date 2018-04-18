@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +26,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import pl.pisquared.movieabout.data.SampleMoviesDataProvider;
+import pl.pisquared.movieabout.utils.BitmapUtils;
 
 public class DetailsActivity extends AppCompatActivity implements DialogInterface.OnDismissListener, GalleryFragment.GalleryItemClickListener
 {
-    // private static final String TAG = DetailsActivity.class.getSimpleName();  // for debug logs
+    private static final String TAG = DetailsActivity.class.getSimpleName();  // for debug logs
     private static final int FRAGMENTS_COUNT = 2;
     private static final String GALLERY_PAGE_TITLE = "Gallery";
     private static final String CAST_PAGE_TITLE = "Cast";
@@ -41,7 +43,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogInterfac
     private Movie currentMovie;
     private final ImageOnClickListener imageOnClickListener = new ImageOnClickListener();
     private Dialog imageDialog;
-    private Bitmap enlargedImage;
+    private Bitmap popupImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -87,8 +89,8 @@ public class DetailsActivity extends AppCompatActivity implements DialogInterfac
     @Override
     public void onDismiss(DialogInterface dialog)
     {
-        if(enlargedImage!=null)
-            enlargedImage.recycle();
+        if(popupImage!=null)
+            popupImage.recycle();
     }
 
     @Override
@@ -206,27 +208,40 @@ public class DetailsActivity extends AppCompatActivity implements DialogInterfac
 
     private void setImageInDialog(Dialog imageDialog, ImageView imageInDialog, int imageResId)
     {
+        if(popupImage != null)
+            popupImage.recycle();
         int activityWidth = getUsableScreenWidth();
         int activityHeight = getUsableScreenHeight();
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;  // prevent automatic density scaling, depends on drawable folder ldpi, mdpi etc. giving wrong sizes when set to true
-        Bitmap initialBitmap = BitmapFactory.decodeResource(getResources(), imageResId, options);
-        int initialWidth = options.outWidth;
+        options.inJustDecodeBounds = true;  // only the dimensions are necessary, image is needless
+        BitmapFactory.decodeResource(getResources(), imageResId, options);  // after that line the options object will be modified to fit real image dimensions
+        int initialWidth = options.outWidth;  // read real image width and height
         int initialHeight = options.outHeight;
         double proportion = ((double) initialWidth)/initialHeight;
-        int scaledWidth = (int) (activityHeight * proportion);
-        enlargedImage = Bitmap.createScaledBitmap(initialBitmap, scaledWidth, activityHeight, false);
-        imageInDialog.setImageBitmap(enlargedImage);
-
-        int imageWidth = enlargedImage.getWidth();
-        int imageHeight = enlargedImage.getHeight();
+        int imageWidth = activityWidth;
+        int imageHeight = activityHeight;
+        if(activityHeight >= activityWidth)  // adjust right dimension to the other, depending on which is larger
+        {
+            imageHeight = (int) (imageWidth / proportion);
+        }
+        else
+        {
+            imageWidth = (int) (imageHeight * proportion);
+        }
+        popupImage = BitmapUtils.decodeSampledBitmapFromResource(getResources(), imageResId, imageWidth, imageHeight);
+        imageInDialog.setImageBitmap(popupImage);  // cause imageView fitXY property image will be scaled up to fit the view if needed
+        Log.d(TAG, "activity height: "+ activityHeight + " activity width: "+activityWidth);
+        Log.d(TAG, "provided height (proportion adjusted): "+ imageHeight + " provided width (proportion adjusted): "+imageWidth);
+        Log.d(TAG, "image not scaled height: "+ initialHeight + " image not scaled width: "+initialWidth);
+        Log.d(TAG, "out height: "+ popupImage.getHeight() + " out width: "+popupImage.getWidth());
 
         // get nice imageDialog dimensions
         while(imageWidth >= activityWidth || imageHeight >= activityHeight)
         {
             imageWidth *= IMAGE_DOWNSIZE_FACTOR;
             imageHeight *= IMAGE_DOWNSIZE_FACTOR;
-        }
+       }
 
         Window dialogWindow = imageDialog.getWindow();
 

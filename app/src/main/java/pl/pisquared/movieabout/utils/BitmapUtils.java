@@ -17,6 +17,7 @@ public class BitmapUtils
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         options.inScaled = false;  // prevent automatic density scaling, depends on drawable folder ldpi, mdpi etc. giving wrong sizes when set to true
+        options.inPreferredConfig = Bitmap.Config.RGB_565;  // memory saving, cause transparency is needless
         BitmapFactory.decodeResource(res, resId, options);
 
         // Calculate inSampleSize
