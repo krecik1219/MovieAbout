@@ -1,4 +1,4 @@
-package pl.pisquared.movieabout.utils;
+package pl.pisquared.movieabout.data;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,6 +14,8 @@ import pl.pisquared.movieabout.Actor;
 import pl.pisquared.movieabout.BitmapWrapper;
 import pl.pisquared.movieabout.Movie;
 import pl.pisquared.movieabout.R;
+import pl.pisquared.movieabout.utils.BitmapUtils;
+import pl.pisquared.movieabout.utils.DateUtils;
 
 /**
  * Created by Kretek on 02/04/2018.

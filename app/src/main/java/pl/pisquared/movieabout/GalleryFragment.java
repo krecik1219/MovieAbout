@@ -1,7 +1,6 @@
 package pl.pisquared.movieabout;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,7 @@ import android.widget.GridView;
 
 import java.util.List;
 
-import pl.pisquared.movieabout.utils.SampleMoviesDataProvider;
+import pl.pisquared.movieabout.data.SampleMoviesDataProvider;
 
 public class GalleryFragment extends Fragment
 {

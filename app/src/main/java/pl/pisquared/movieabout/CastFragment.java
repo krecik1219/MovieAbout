@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import pl.pisquared.movieabout.utils.SampleMoviesDataProvider;
+import pl.pisquared.movieabout.data.SampleMoviesDataProvider;
 
 public class CastFragment extends Fragment
 {

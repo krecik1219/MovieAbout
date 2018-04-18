@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import pl.pisquared.movieabout.utils.SampleMoviesDataProvider;
+import pl.pisquared.movieabout.data.SampleMoviesDataProvider;
 
 /**
  * Created by Kretek on 02/04/2018.

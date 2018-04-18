@@ -1,7 +1,6 @@
 package pl.pisquared.movieabout;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
 
 import java.util.Date;
 

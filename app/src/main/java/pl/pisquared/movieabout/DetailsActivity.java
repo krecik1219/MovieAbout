@@ -17,7 +17,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +24,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
-
-import pl.pisquared.movieabout.utils.BitmapUtils;
-import pl.pisquared.movieabout.utils.SampleMoviesDataProvider;
+import pl.pisquared.movieabout.data.SampleMoviesDataProvider;
 
 public class DetailsActivity extends AppCompatActivity implements DialogInterface.OnDismissListener, GalleryFragment.GalleryItemClickListener
 {
